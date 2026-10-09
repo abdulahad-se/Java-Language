@@ -1,160 +1,114 @@
+import java.util.Scanner;
+
 public class N_JavaLab {
-
-    // Task 1
-    public class Example1 {
-        public static void main(String[] args) {
-            try {
-                int[] numbers = { 1, 2, 3 };
-                System.out.println(numbers[4]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Array index out of bounds");
-            } finally {
-                System.out.println("Finally block executed");
-            }
+    public static void main(String[] args) {
+        // Task 1: Handle an array index exception.
+        System.out.println("Task 1 - Array exception");
+        try {
+            int[] numbers = { 1, 2, 3 };
+            System.out.println(numbers[4]);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("Array index does not exist.");
+        } finally {
+            System.out.println("Finally block executed.");
         }
+
+        // Task 2: Handle arithmetic and argument exceptions.
+        System.out.println("\nTask 2 - Built-in exceptions");
+        try {
+            int firstNumber = 10;
+            int secondNumber = 0;
+            System.out.println(firstNumber / secondNumber);
+        } catch (ArithmeticException exception) {
+            System.out.println("Cannot divide by zero.");
+        }
+
+        try {
+            withdrawAmount(5000);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        // Task 3: Custom checked exception for age validation.
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nTask 3 - Custom age exception");
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        try {
+            CinemaHall.checkAge(age);
+        } catch (InvalidAgeException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        // Task 4: Custom checked exception for deposits.
+        System.out.println("\nTask 4 - Custom deposit exception");
+        try {
+            processDeposit(5000);
+        } catch (InvalidDepositException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        // Task 5: Validate voter registration.
+        System.out.println("\nTask 5 - Voter registration");
+        try {
+            registerVoter("Abdul Ahad", age);
+        } catch (AgeOutOfRangeException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        scanner.close();
     }
 
-    // -----------------------------------------------------------------------
-
-    // Task 2
-    public class Example2 {
-        public static void main(String[] args) {
-            try {
-                int a = 10;
-                int b = 0;
-                int result = 10 / 0;
-            } catch (ArithmeticException e) {
-                System.out.println("Cannot divide by zero");
-            } finally {
-                System.out.println("Finally block executed");
-            }
+    public static void withdrawAmount(int amount) {
+        if (amount < 10000) {
+            throw new IllegalArgumentException(
+                    "At least 10000 is required for withdrawal.");
         }
+        System.out.println("Amount withdrawn successfully.");
     }
 
-    // -----------------------------------------------------------------------
-
-    // Task 3
-    public class Example3 {
-    public static void withdrawamount(int amount)throws IllegalArgumentException{
-    if(amount<10000){
-    throw new IllegalArgumentException("You are unable to get the requested
-    withdraw amount.");
-    }else{
-    System.out.println("Amount Successfull Withdraws");
-    }
+    public static void processDeposit(int amount) throws InvalidDepositException {
+        if (amount < 1000 || amount > 50000) {
+            throw new InvalidDepositException(
+                    "Deposit must be between 1000 and 50000.");
+        }
+        System.out.println("Money deposited successfully.");
     }
 
-        public static void main(String[] args) {
-            try {
-                Example3.withdrawamount(20000);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } finally {
-                System.out.println("Inside finally block");
-            }
+    public static void registerVoter(String name, int age)
+            throws AgeOutOfRangeException {
+        if (age < 18 || age > 120) {
+            throw new AgeOutOfRangeException(
+                    "Age must be between 18 and 120.");
         }
+        System.out.println("Registration successful for " + name + ".");
     }
+}
 
-    // ---------------------------------------------------------------------
-
-    // Task 4
-    public class InvalidAgeException extends Exception {
-        public InvalidAgeException(String message) {
-            super(message);
-        }
-
-        // }
-        public class CinemaHall {
-    public static void checkage(int age)throws InvalidAgeException{
-    if(age<18){
-    throw new InvalidAgeException("Not eligible: You must be 18 years old to
-    enter the cinema Hall");
-    }else{
-    System.out.println("Enjoy your movie");
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String message) {
+        super(message);
     }
+}
+
+class CinemaHall {
+    public static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException(
+                    "You must be 18 years old to enter the cinema hall.");
+        }
+        System.out.println("Enjoy your movie.");
     }
+}
 
-            public static void main(String[] args) {
-                java.util.Scanner sc = new java.util.Scanner(System.in);
-                int age = sc.nextInt();
-                try {
-                    CinemaHall.checkage(age);
-                } catch (InvalidAgeException e) {
-                    System.out.println(e.getMessage());
-                } finally {
-                    System.out.println("This block always run");
-                }
-            }
-        }
+class InvalidDepositException extends Exception {
+    InvalidDepositException(String message) {
+        super(message);
+    }
+}
 
-        // -------------------------------------------------------------------
-
-        // Task 5
-        public class InvalidDepositException extends Exception {
-            public InvalidDepositException(String message) {
-                super(message);
-            }
-        }
-
-        public class Deposit {
-            public static void processdeposit(int amount) throws InvalidDepositException {
-                if (amount < 1000 || amount > 50000) {
-                    throw new InvalidDepositException("error");
-                } else {
-                    System.out.println("Money deposited");
-                }
-            }
-
-            public static void main(String[] args) {
-                java.util.Scanner sc = new java.util.Scanner(System.in);
-                int amount = sc.nextInt();
-                try {
-                    Deposit.processdeposit(amount);
-                } catch (InvalidDepositException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
-
-        // -------------------------------------------------------------------------
-
-        // Task 6
-        public class AgeOutOfRangeException extends Exception {
-            private String error;
-
-            public AgeOutOfRangeException(String message) {
-                super(message);
-                this.error = message;
-            }
-
-            public String toString() {
-                return "AgeOutOfRangeException:" + this.error;
-            }
-        }
-
-        public class Voter {
-            public static void registervoter(String name, int age) throws AgeOutOfRangeException {
-                if (age < 18 || age > 120) {
-                    throw new AgeOutOfRangeException("Age must between 18 and 120");
-                } else {
-                    System.out.println("Registration Successful for:" + name);
-                }
-            }
-        }
-
-        public class Main {
-            public static void main(String[] args) {
-                java.util.Scanner sc = new java.util.Scanner(System.in);
-                System.out.print("Enter your name:");
-                String name = sc.nextLine();
-                System.out.print("Enter your age :");
-                int age = sc.nextInt();
-                try {
-                    Voter.registervoter(name, age);
-                } catch (AgeOutOfRangeException e) {
-                    System.out.println(e);
-                }
-            }
-        }
-
+class AgeOutOfRangeException extends Exception {
+    AgeOutOfRangeException(String message) {
+        super(message);
+    }
 }
