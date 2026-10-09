@@ -1,152 +1,92 @@
-public class K_Functions {
-   public static void fibonacciSeries(int n){
-       int a=0,b=1;
-       for(int i=1; i<=n; i++){
-           if(i%3==0){
-               continue;
-           }
-           System.out.print(a+",");
-           int c=a+b;
-           a=b;
-           b=c;
-       }
+import java.util.Scanner;
 
+public class K_Functions {
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int n = sc.nextInt();
-        fibonacciSeries(n);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of Fibonacci terms: ");
+        int terms = scanner.nextInt();
+        fibonacciSeries(terms);
+
+        System.out.println("Largest number: " + greaterNumber(12, 25));
+        System.out.println("Eligible to vote: " + eligibleAge(20));
+        System.out.println("Circumference: " + circumferenceRadius(5));
+        System.out.println("Sum: " + printSum(10, 20));
+        System.out.println("Odd number sum: " + printOddSum(10));
+        System.out.println("Average: " + printAverage(10, 20, 30));
+        System.out.println("Factorial: " + numberFact(5));
+
+        counterNumber(5);
+        scanner.close();
     }
 
-    public static void counterNumber(int n) {
-        int positive = 0, negative = 0, zeros = 0;
-        for (int num = -10; num <= n; num++) {
-            if (num > 0) {
+    public static void fibonacciSeries(int terms) {
+        int first = 0;
+        int second = 1;
+        for (int count = 1; count <= terms; count++) {
+            System.out.print(first + " ");
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+        System.out.println();
+    }
+
+    public static void counterNumber(int limit) {
+        int positive = 0;
+        int negative = 0;
+        int zeros = 0;
+
+        for (int number = -10; number <= limit; number++) {
+            if (number > 0) {
                 positive++;
-                System.out.println("The positive numbers are" + positive);
-
-            } else if (num < 0) {
+            } else if (number < 0) {
                 negative++;
-                System.out.println("the negative numbers are" + negative);
-
             } else {
                 zeros++;
-                System.out.println("The zeros are" + zeros);
-
             }
         }
 
-    }
-
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int n = sc.nextInt();
-        counterNumber(n);
-
+        System.out.println("Positive numbers: " + positive);
+        System.out.println("Negative numbers: " + negative);
+        System.out.println("Zeros: " + zeros);
     }
 
     public static String eligibleAge(int age) {
-        if (age > 18) {
-            return "Eligible to vote";
-        } else {
-            return "Not eligible to vote";
-        }
+        return age >= 18 ? "Eligible to vote" : "Not eligible to vote";
     }
 
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int age = sc.nextInt();
-        System.out.println(eligibleAge(age));
+    public static double circumferenceRadius(double radius) {
+        return 2 * Math.PI * radius;
     }
 
-    public static void circumferenceRadius(double radius) {
-        double c = 2 * 3.14 * radius;
-        System.out.println("The value of circumference is " + c);
+    public static int greaterNumber(int first, int second) {
+        return first > second ? first : second;
     }
 
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int radius = sc.nextInt();
-        circumferenceRadius(radius);
-
-    }
-
-    public static int greaterNumber(int a, int b) {
-        if (a > b) {
-            return a;
-        } else {
-            return b;
-
-        }
-    }
-
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        System.out.println("The max number is " + greaterNumber(a, b));
-    }
-
-    public static int printOddSum(int n, int sum) {
-
-        for (int i = 1; i <= n; i++) {
-            if (i % 2 != 0) {
-                sum += i;
+    public static int printOddSum(int limit) {
+        int sum = 0;
+        for (int number = 1; number <= limit; number++) {
+            if (number % 2 != 0) {
+                sum += number;
             }
         }
         return sum;
     }
 
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int n = sc.nextInt();
-        int sum = 0;
-        System.out.println("The sum off odd number is" + printOddSum(n, sum));
-
+    public static double printAverage(int first, int second, int third) {
+        return (first + second + third) / 3.0;
     }
 
-    public static int printAverage(int a, int b, int c) {
-        int avg = (int) (a + b + c) / 3;
-        return avg;
-
-    }
-
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        int c = sc.nextInt();
-        System.out.println("The average is" + printAverage(a, b, c));
-
-    }
-
-    public static int numberFact(int n) {
-        int fact = 1;
-        for (int i = n; i >= 1; i--) {
-            fact = fact * i;
-
+    public static int numberFact(int number) {
+        int factorial = 1;
+        for (int current = number; current >= 1; current--) {
+            factorial *= current;
         }
-
-        return fact;
-
+        return factorial;
     }
 
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int n = sc.nextInt();
-        System.out.println("Teh fact is " + numberFact(n));
-
+    public static int printSum(int first, int second) {
+        return first + second;
     }
-
-    public static int printSum(int a, int b) {
-        int sum = a + b;
-        return sum;
-    }
-
-    public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        System.out.println("The sum is" + printSum(a, b));
-    }
-
 }
