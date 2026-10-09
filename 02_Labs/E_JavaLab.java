@@ -1,132 +1,97 @@
-// NOTICE : To run this code on your console in any java IDE at first you have to comment out 
-// the task you want to run by using key like ctrl+// and write boiler plate code public static void main(String[] args) if you are using different files 
-// Add extra braces as this different tasks are arrange in single file so that this why this whole program is comment out.
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class E_JavaLab {
     public static void main(String[] args) {
-        // Task 1
+        Scanner scanner = new Scanner(System.in);
+
+        // Task 1: Calculate the average of an array.
         int[] numbers = { 10, 20, 30, 40, 50 };
-        double sum = 0;
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        System.out.println("Task 1 - Average: " + (double) sum / numbers.length);
 
-        for (int i = 0; i < numbers.length; i++) {
-            sum += numbers[i];
+        // Task 2: Reverse an array manually.
+        int[] reversed = { 1, 2, 3, 4, 5 };
+        for (int start = 0, end = reversed.length - 1; start < end;
+                start++, end--) {
+            int temporary = reversed[start];
+            reversed[start] = reversed[end];
+            reversed[end] = temporary;
+        }
+        System.out.println("Task 2 - Reversed array: "
+                + Arrays.toString(reversed));
+
+        // Task 3: Sort numeric and string arrays.
+        int[] numericValues = { 50, 10, 40, 20, 30 };
+        String[] textValues = { "Banana", "Apple", "Orange", "Mango" };
+        Arrays.sort(numericValues);
+        Arrays.sort(textValues);
+        System.out.println("Task 3 - Sorted numbers: "
+                + Arrays.toString(numericValues));
+        System.out.println("Task 3 - Sorted strings: "
+                + Arrays.toString(textValues));
+
+        // Task 4: Store random monthly values and calculate their average.
+        String[] months = { "January", "February", "March", "April", "May",
+                "June", "July", "August", "September", "October", "November",
+                "December" };
+        double monthlySum = 0;
+        for (String month : months) {
+            double value = Math.random() * 100;
+            monthlySum += value;
+            System.out.printf("%s: %.2f%n", month, value);
+        }
+        System.out.printf("Task 4 - Monthly average: %.2f%n",
+                monthlySum / months.length);
+
+        // Task 5: Find the first non-repeated character.
+        String input = "swiss";
+        int[] frequency = new int[256];
+        for (int index = 0; index < input.length(); index++) {
+            frequency[input.charAt(index)]++;
+        }
+        char firstUnique = '\0';
+        for (int index = 0; index < input.length(); index++) {
+            if (frequency[input.charAt(index)] == 1) {
+                firstUnique = input.charAt(index);
+                break;
+            }
+        }
+        System.out.println("Task 5 - First non-repeated character: "
+                + (firstUnique == '\0' ? "None" : firstUnique));
+
+        // Task 6: Print a Fibonacci series.
+        int first = 0;
+        int second = 1;
+        System.out.print("Task 6 - Fibonacci series: ");
+        for (int count = 1; count <= 10; count++) {
+            System.out.print(first + " ");
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+        System.out.println();
+
+        // Task 7: Search for a character in a string.
+        String sentence = "Object oriented programming";
+        System.out.print("Enter a character to search: ");
+        char target = scanner.next().charAt(0);
+        int foundIndex = -1;
+        for (int index = 0; index < sentence.length(); index++) {
+            if (sentence.charAt(index) == target) {
+                foundIndex = index;
+                break;
+            }
+        }
+        if (foundIndex >= 0) {
+            System.out.println("Task 7 - Character found at index " + foundIndex);
+        } else {
+            System.out.println("Task 7 - Character not found");
         }
 
-        System.out.println("Average: " + (sum / numbers.length));
-
-        // ---------------------------------------------------------------------
-
-        // Task 2
-        int[] arr = { 1, 2, 3, 4, 5 };
-        int start = 0, end = arr.length - 1;
-        while (start < end) {
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
-        }
-        System.out.print("Reversed Array: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }}
-
-    // --------------------------------------------------------------------
-
-    // Task 3
-    int[] numArr = { 50, 10, 40, 20, 30 };
-    String[] strArr = { "Banana", "Apple", "Orange", "Mango" };
-
-    Arrays.sort(numArr);Arrays.sort(strArr);
-
-    System.out.print("Sorted Numbers: ");for(
-    int i = 0;i<numArr.length;i++)
-    {
-        System.out.print(numArr[i] + " ");
+        scanner.close();
     }
-
-    System.out.print("\nSorted Strings: ");for(
-    int i = 0;i<strArr.length;i++)
-    {
-        System.out.print(strArr[i] + " ");
-    }
-
-    // ---------------------------------------------------------------
-
-    // Task 4
-    public static void main(String[] args) {
-        String[]
-        months={"january","febuary","March","April","May","june","july","august","September","october","november","december"};
-        double[] decimals=new double[12];
-        double sum=0;
-        for(int i=0; i<months.length; i++){
-        decimals[i]=Math.random()*100;
-        sum+=decimals[i];
-        System.out.println(months[i]+" "+decimals[i]);
-        
-        }
-        System.out.println("Average"+sum/12);
-        
-        }}
-
-    // --------------------------------------------------------
-
-    // Task 5
-    String input = "swiss";
-    int[] freq = new int[256];
-
-    for(
-    int i = 0;i<input.length();i++)
-    {
-        freq[input.charAt(i)]++;
-    }
-
-    boolean found = false;
-    // Using standard for loop to find the first one with count 1
-    for(
-    int i = 0;i<input.length();i++)
-    {
-        if (freq[input.charAt(i)] == 1) {
-            System.out.println("First non-repeated character: " + input.charAt(i));
-            found = true;
-            break;
-        }
-    }if(!found)System.out.println("All characters are repeated");
-    }
-
-    // --------------------------------------------------
-    // Task 6
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        int a=0;
-        int b=1;
-        int n=10;
-        for(int i=1; i<=n; i++){
-        if (a%3!=0){
-        System.out.print(a+",");
-        }
-        int c=a+b;
-        a=b;
-        b=c;
-        }
-        }}
-
-    // ----------------------------------------------------------
-
-    // Task 7
-    String str = "Object oriented programming";
-    char target = sc.next().charAt(0);
-    int foundindex = -1;for(
-    int i = 0;i<str.length();i++){
-
-    if(str.charAt(i)==target)
-    {
-        foundindex = i;
-
-        break;
-    }
-
-}if(foundindex!=-1){System.out.println("Character found at index"+foundindex);}else{System.out.println("Character not found");}}}
-
-}}
+}
