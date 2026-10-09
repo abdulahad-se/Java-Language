@@ -38,6 +38,7 @@ public class A_JavaLab {
         // Task 4
 
         System.out.print("Enter your Name: ");
+        sc.nextLine();
         String name = sc.nextLine();
         System.out.print("Enter your Father's Name: ");
         String fatherName = sc.nextLine();
