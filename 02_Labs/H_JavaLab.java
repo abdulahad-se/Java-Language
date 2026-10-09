@@ -1,89 +1,65 @@
-// NOTICE : This Lab Belong to Obejct Oriented Concept of Java.
-// It has Multiple Classes in which one class that has methods , variables , constructors etc.
-// While other is main class that intialize and print.
-
 public class H_JavaLab {
-    // Task 1
-    class PowerLaw {
-        int current, voltage, power;
+    public static void main(String[] args) {
+        // Task 1: Create an object and call its methods.
+        PowerLaw powerLaw = new PowerLaw();
+        powerLaw.setValues(10, 20);
+        powerLaw.calculatePower();
+        powerLaw.display();
 
-        void value(int current, int voltage) {
-            this.current = current;
-            this.voltage = voltage;
-        }
+        // Task 2: Use a constructor to initialize an object.
+        StudentData student = new StudentData("Danish", 998, 9998, "Karachi");
+        student.display();
 
-        void calculatepower() {
-            power = current * voltage;
-            System.out.println("The power is " + power);
-        }
+        // Task 3: Call a method that returns a value.
+        Addition addition = new Addition();
+        System.out.println("The sum is " + addition.getTotal(10, 20));
+    }
+}
 
-        void display() {
-            System.out.println("The current is " + current);
-            System.out.println("The voltage is" + voltage);
-            System.out.println("The power is " + power);
-        }
+class PowerLaw {
+    private int current;
+    private int voltage;
+    private int power;
+
+    public void setValues(int current, int voltage) {
+        this.current = current;
+        this.voltage = voltage;
     }
 
-    // This is Main Class of Task 1
-    public class Mainja {
-        public static void main(String[] args) {
-            PowerLaw pl = new PowerLaw();
-            pl.value(10, 20);
-            pl.calculatepower();
-            pl.display();
-        }
-
+    public void calculatePower() {
+        power = current * voltage;
     }
 
-    // -------------------------------------------------------------
+    public void display() {
+        System.out.println("The current is " + current);
+        System.out.println("The voltage is " + voltage);
+        System.out.println("The power is " + power);
+    }
+}
 
-    // Task 2
-    public class studentdata {
-        int rollno, phonenumber;
-        String address, name;
+class StudentData {
+    private final String name;
+    private final int rollNumber;
+    private final int phoneNumber;
+    private final String address;
 
-        studentdata(String name, int rollno, int phonenumber, String address) {
-            this.rollno = rollno;
-            this.phonenumber = phonenumber;
-            this.address = address;
-            this.name = name;
-        }
-
-        void display() {
-            System.out.println("The name of student is" + name);
-            System.out.println("The rollno of student is" + rollno);
-            System.out.println("The phonenumber of student is" + phonenumber);
-            System.out.println("The address of student is" + address);
-        }
+    StudentData(String name, int rollNumber, int phoneNumber, String address) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
-    // This is the main class of Task 2
-    public class showdata {
-        public static void main(String[] args) {
-            // studentdata sd1=new studentdata("Babar",999,99987547,"karachi");
-            studentdata sd2 = new studentdata("Danish", 998, 9998, "karachi");
-            // sd1.display();
-            sd2.display();
-        }
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll number: " + rollNumber);
+        System.out.println("Phone number: " + phoneNumber);
+        System.out.println("Address: " + address);
     }
+}
 
-    // --------------------------------------------------------------------------------
-
-    // Task 3
-    public class addjava {
-        int getTotal(int a, int b) {
-            return a + b;
-        }
+class Addition {
+    public int getTotal(int first, int second) {
+        return first + second;
     }
-
-    // This is main class of Task 3
-    public class Mainjava {
-        public static void main(String[] args) {
-            addjava obj = new addjava();
-            int result = obj.getTotal(10, 20);
-            System.out.println("The sum of a and  b is " + result);
-
-        }
-    }
-
 }
