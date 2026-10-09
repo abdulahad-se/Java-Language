@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class D_input {
     public static void main(String[] args) {
@@ -20,7 +20,9 @@ public class D_input {
         System.out.println("Character" + character);
 
         System.out.print("Enter the name:");
+        sc.nextLine();
         String name = sc.nextLine();
         System.out.println("Name" + name);
+        sc.close();
     }
 }
