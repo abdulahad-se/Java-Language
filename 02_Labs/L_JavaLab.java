@@ -1,94 +1,77 @@
 public class L_JavaLab {
+    public static void main(String[] args) {
+        // Task 1: A class implements an interface that extends another interface.
+        Calculator calculator = new Calculator(2, 3);
+        System.out.println("Task 1 - Interface inheritance");
+        calculator.add();
+        calculator.subtract();
+        calculator.multiply();
 
-    // Task 1
-    interface Y {
-        void mull();
-    }
-
-    interface X extends Y {
-        void add();
-
-        void sub();
-    }
-
-    public class A implements X {
-        int num1;
-        int num2;
-
-        A() {
-            this.num1 = 0;
-            this.num2 = 0;
-        }
-
-        A(int num1, int num2) {
-            this.num1 = num1;
-            this.num2 = num2;
-        }
-
-    public void mull(){
-    System.out.println("The multiplication of number1 and number2"+"
-    "+(this.num1*this.num2));
-    }
-
-    public void add(){
-    System.out.println("The addition of number1 and number2"+"
-    "+(this.num1+this.num2));
-    }
-
-    public void sub(){
-    System.out.println("The subtraction of number1 and number 2"+"
-    "+(this.num1-this.num2));
-    }
-
-    }
-
-    // Task 1 main class
-    public class showA {
-        public static void main(String[] args) {
-            X x = new A();
-            A x1 = new A(2, 3);
-            x.add();
-            x.sub();
-            x.mull();
-            x1.add();
-            x1.sub();
-            x1.mull();
+        // Task 2: Different classes implement the same interface.
+        Shape[] shapes = { new Circle(), new Square(), new RectangleShape() };
+        System.out.println("\nTask 2 - Interface polymorphism");
+        for (Shape shape : shapes) {
+            shape.draw();
         }
     }
+}
 
-    // ---------------------------------------------------------------------
+interface MultiplyOperation {
+    void multiply();
+}
 
-    // Task 2
-    public interface Shape {
-        void Draw();
+interface ArithmeticOperations extends MultiplyOperation {
+    void add();
+
+    void subtract();
+}
+
+class Calculator implements ArithmeticOperations {
+    private final int first;
+    private final int second;
+
+    Calculator(int first, int second) {
+        this.first = first;
+        this.second = second;
     }
 
-    public class Circle implements Shape {
-        public void Draw() {
-            System.out.println("This is circle");
-        }
+    @Override
+    public void multiply() {
+        System.out.println("Multiplication: " + first * second);
     }
 
-    public class Square implements Shape {
-        public void Draw() {
-            System.out.println("This is square");
-        }
+    @Override
+    public void add() {
+        System.out.println("Addition: " + (first + second));
     }
 
-    public class Rectangle implements Shape {
-        public void Draw() {
-            System.out.println("This is rectangle");
-        }
+    @Override
+    public void subtract() {
+        System.out.println("Subtraction: " + (first - second));
     }
+}
 
-    // Task 2 main class
-    public class showShape {
-        public static void main(String[] args) {
-            Shape[] shape = { new Circle(), new Square(), new Rectangle() };
-            for (Shape shapes : shape) {
-                shapes.Draw();
-            }
-        }
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("This is a circle");
     }
+}
 
+class Square implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("This is a square");
+    }
+}
+
+class RectangleShape implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("This is a rectangle");
+    }
 }
