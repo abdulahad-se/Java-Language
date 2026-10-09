@@ -91,8 +91,6 @@ class F_ConditionalStatements {
         System.out.println("Day name: " + dayName);
 
         // Ternary Operators
-        int numbers = 15;
-
         // Example 1: Check if number is even or odd
         String type = (number % 2 == 0) ? "Even" : "Odd";
         System.out.println(number + " is " + type);
