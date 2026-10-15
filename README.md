@@ -38,7 +38,7 @@ Some programs require user input through the terminal.
 
 If you find an error or would like to suggest an improvement, please contact me first:
 
-**Email:** your-email@example.com
+**Email:** abdulahad2026p@gmail.com
 
 After approval, please submit the proposed change through a pull request from your fork. All contributions are subject to review and may be accepted or rejected by the repository owner.
 
